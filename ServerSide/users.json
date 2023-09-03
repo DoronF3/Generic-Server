@@ -1,0 +1,28 @@
+{
+    "user1": {
+        "user_id": "1",
+        "username": "user1",
+        "password_hash": "hashed_password1",
+        "email": "user1@example.com",
+        "roles": [
+            "user"
+        ]
+    },
+    "guest": {
+        "user_id": "3",
+        "username": "guest",
+        "password_hash": "hashed_password3",
+        "email": "guest@example.com",
+        "roles": [
+            "user"
+        ]
+    },
+    "admin": {
+        "user_id": "7dceac559d5a49b9",
+        "username": "admin",
+        "password": "$2b$12$UKSdpCnCAKyjFYeYtd5GHOL4jBN00zOIQ5IvjOsYP4PhoyLFcpyFG",
+        "roles": [
+            "user"
+        ]
+    }
+}
