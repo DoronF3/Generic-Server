@@ -52,7 +52,53 @@ Explain how to start the Flask server. Include any specific commands or settings
 
 ## Endpoints
 
-List and describe the available endpoints of your server. Include details like HTTP methods, input parameters, and expected responses.
+### Home Endpoint
+
+- **URL:** `/`
+- **HTTP Method:** GET
+- **Description:** This is the homepage of the server. When accessed with a GET request, it returns a welcome message.
+
+### Register Endpoint
+
+- **URL:** `/register`
+- **HTTP Method:** POST
+- **Description:** This endpoint allows users to register by providing a username and password in a JSON format. It checks if the username is unique, generates a secure user ID token, hashes the password, and stores the user's information in a JSON file.
+
+### Login Endpoint
+
+- **URL:** `/login`
+- **HTTP Method:** POST
+- **Description:** This endpoint allows users to log in by providing their username and password in a JSON format. It validates the credentials and, if successful, creates a session cookie for the user.
+
+### Logout Endpoint
+
+- **URL:** `/logout`
+- **HTTP Method:** GET
+- **Description:** This endpoint logs the user out by clearing the session cookie.
+
+### Admin Dashboard Endpoint
+
+- **URL:** `/admin/dashboard`
+- **HTTP Method:** GET
+- **Description:** This endpoint represents the admin dashboard, accessible only to users with the 'admin' role. It uses the `@custom_roles_required('admin')` decorator to ensure access control.
+
+### User Profile Endpoint
+
+- **URL:** `/user/profile`
+- **HTTP Method:** GET
+- **Description:** This endpoint represents the user's profile page, accessible to logged-in users. It uses the `@custom_login_required` decorator to ensure that only authenticated users can access it.
+
+### Endpoint 1
+
+- **URL:** `/endpoint1`
+- **HTTP Methods:** GET, POST, PUT, PATCH, DELETE
+- **Description:** This is a generic endpoint that supports multiple HTTP methods (GET, POST, PUT, PATCH, DELETE). You can use it for various purposes by implementing the corresponding method handlers.
+
+### Endpoint 2
+
+- **URL:** `/endpoint2`
+- **HTTP Methods:** GET, POST, PUT, PATCH, DELETE
+- **Description:** Similar to Endpoint 1, this is another generic endpoint that supports multiple HTTP methods. You can implement different functionalities for each method.
 
 ## Project Structure
 
