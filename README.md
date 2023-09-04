@@ -1,4 +1,4 @@
-# Generic-Authentication Server 
+# Generic-Authentication Server with Local JSON DB
 
 **Brief description of your project**
 
@@ -73,4 +73,4 @@ Explain how others can contribute to your project. Include guidelines for submit
 
 ## License
 
-Specify the license under which your project is distributed.
+This repository is licensed under the [MIT License](LICENSE).
