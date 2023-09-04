@@ -16,7 +16,6 @@
 - [Project Structure](#project-structure)
 - [Deployment](#deployment)
 - [Security](#security)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Project Description
@@ -66,10 +65,6 @@ Provide guidance on how to deploy your project to a production environment. Incl
 ## Security
 
 Discuss the security measures you've implemented in your project. Explain how you handle authentication, authorization, and data protection.
-
-## Contributing
-
-Explain how others can contribute to your project. Include guidelines for submitting bug reports, feature requests, or code contributions.
 
 ## License
 
