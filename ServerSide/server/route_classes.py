@@ -8,15 +8,13 @@ from flask_bcrypt import Bcrypt
 from datetime import datetime, timedelta
 
 from ServerSide.server.validation import is_valid, validate_path_load_json
-from ServerSide.server.json_manipulation import load_users_from_json, load_roles_from_json
+from ServerSide.server.json_manipulation import load_users_from_json, load_roles_from_json ,save_users_to_json
 from ServerSide.server.models import User, Role
 
 # Constants and paths
 WELCOME_MSG = 'You have reached the server.'
 RESOURCES_PATH = "/path/to/resources"
 JSONS_PATH = "/server/Resources/jsons/"
-USERS_PATH = "users.json"
-ROLES_PATH = "roles.json"
 
 TOKEN_LENGTH = 8  # Length of the secure token for user IDs
 
@@ -28,10 +26,11 @@ HTTP_CREATED = 'Created'
 HTTP_INTERNAL_SERVER_ERROR = 'Internal Server Error'
 
 # Load users and roles from JSON files
-users = load_users_from_json(USERS_PATH)
-roles = load_roles_from_json(ROLES_PATH)
+users = load_users_from_json()
+roles = load_roles_from_json()
 
 bcrypt = Bcrypt()
+
 
 # Function to generate a new user ID as a secure token
 def generate_new_token():
@@ -39,6 +38,20 @@ def generate_new_token():
     token = secrets.token_hex(8)  # Adjust the token length as needed
 
     return token
+
+
+def delete_user(username):
+    global users
+    users = load_users_from_json()
+    if username not in users:
+        return "No such user"
+    users.__delitem__(username)
+    save_users_to_json(users)
+    return "Operation successful"
+
+
+def user_exists(username):
+    return username in users
 
 
 # custom_login_required Decorator
@@ -129,15 +142,17 @@ class Register(Resource):
 
     """
     def post(self):
+        global users
+        users = load_users_from_json()
         data = request.get_json()
 
         # Check if the required fields are provided in the request JSON
         if 'username' not in data or 'password' not in data:
-            return jsonify({'message': 'Username and password are required.'}), 400
+            return 'Username and password are required.', 400
 
         # Check if the username already exists in the JSON file
         if data['username'] in users:
-            return jsonify({'message': 'Username already exists.'}), 400
+            return 'Username already exists.', 400
 
         id = generate_new_token()
 
@@ -153,8 +168,7 @@ class Register(Resource):
         users[data['username']] = {'user_id': id, 'username': data['username'], 'password_hash': password_hash, 'roles': user.role}
         with open(os.getcwd() + JSONS_PATH + 'users.json', 'w') as users_file:
             json.dump(users, users_file, indent=4)
-
-        return jsonify({'message': 'User registered successfully.'}), 201
+        return 'User registered successfully.', 201
 
 
 class Login(Resource):

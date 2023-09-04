@@ -14,8 +14,6 @@ def create_dict(endpoints_dict):
     if len(endpoints_dict) != len(class_dict):
         return None
 
-    # todo add another layer of checks?
-
     # Iterate over all the endpoints.
     for endpoint in endpoints_dict:
         if endpoint in class_dict:
